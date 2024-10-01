@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+apt update && apt upgrade -y
+apt install curl wget bash git screen -y
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
 
@@ -89,3 +90,11 @@ if ! command -v pyenv 1>/dev/null; then
     "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
   } >&2
 fi
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# Restart your shell for the changes to take effect.
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+eval "$(pyenv virtualenv-init -)"
+reboot
