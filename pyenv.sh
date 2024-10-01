@@ -105,5 +105,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-source ~/.bashrc
-echo "Pyenv is now configured. Please restart your terminal or run 'source ~/.bashrc' to apply the changes."
+echo "Pyenv 已安装. 请重启终端或运行 'source ~/.bashrc' 重载终端."
