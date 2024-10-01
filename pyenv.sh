@@ -105,6 +105,7 @@ eval "\$(pyenv virtualenv-init -)"
 EOF
 
 fi
+
 sleep 1
 source ~/.bashrc
 sleep 1
