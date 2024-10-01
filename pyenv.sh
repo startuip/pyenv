@@ -92,18 +92,20 @@ if ! command -v pyenv 1>/dev/null; then
     "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
   } >&2
 fi
-# 将 pyenv 的配置写入 shell 配置文件 (如 .bashrc 或 .zshrc)
-if ! grep -q 'export PYENV_ROOT="$HOME/.pyenv"' ~/.bashrc; then
-  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-  echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-  echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-fi
+cat << EOF >> ~/.bashrc
 
-# 立即生效当前环境
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-echo "Pyenv安装完成. 请重启终端或运行 'source ~/.bashrc' 重载终端."
+export PYENV_ROOT="\$HOME/.pyenv"
+if [[ -d "\$PYENV_ROOT/bin" ]]; then
+  export PATH="\$PYENV_ROOT/bin:\$PATH"
+fi
+eval "\$(pyenv init --path)"
+eval "\$(pyenv init -)"
+eval "\$(pyenv virtualenv-init -)"
+
+EOF
+
+fi
+sleep 1
+source ~/.bashrc
+sleep 1
 rm -rf pyenv.sh
