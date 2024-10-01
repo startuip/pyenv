@@ -92,4 +92,19 @@ if ! command -v pyenv 1>/dev/null; then
     "${PYENV_ROOT}/bin/pyenv" virtualenv-init || true
   } >&2
 fi
+
+cat << EOF >> ~/.bashrc
+
+export PYENV_ROOT="\$HOME/.pyenv"
+if [[ -d "\$PYENV_ROOT/bin" ]]; then
+  export PATH="\$PYENV_ROOT/bin:\$PATH"
+fi
+eval "\$(pyenv init --path)"
+eval "\$(pyenv init -)"
+eval "\$(pyenv virtualenv-init -)"
+
+EOF
+
 rm -rf pyenv.sh
+sleep 3
+reboot
