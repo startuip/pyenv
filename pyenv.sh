@@ -106,3 +106,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 echo "Pyenv安装完成. 请重启终端或运行 'source ~/.bashrc' 重载终端."
+rm -rf pyenv.sh
