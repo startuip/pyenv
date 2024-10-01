@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 apt update && apt upgrade -y
 apt install curl wget bash git screen -y
+rm -rf .pyenv/*
+rm -rf .pyenv
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
 
